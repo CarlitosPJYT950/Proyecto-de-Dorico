@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chat WebSocket</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+            background-color: #f0f0f0;
+        }
+        #chat {
+            flex: 1;
+            overflow-y: auto;
+            padding: 10px;
+            border-bottom: 1px solid #ccc;
+        }
+        #messages {
+            list-style: none;
+            padding: 0;
+        }
+        #messages li {
+            margin-bottom: 10px;
+            padding: 8px;
+            background-color: #fff;
+            border-radius: 5px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+        #input-container {
+            display: flex;
+            padding: 10px;
+            background-color: #fff;
+            border-top: 1px solid #ccc;
+        }
+        #message-input {
+            flex: 1;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            margin-right: 10px;
+        }
+        #send-button {
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        #send-button:hover {
+            background-color: #0056b3;
+        }
+        #status {
+            padding: 5px 10px;
+            background-color: #e9ecef;
+            color: #495057;
+            text-align: center;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+    <div id="status">Conectando...</div>
+    <div id="chat">
+        <ul id="messages"></ul>
+    </div>
+    <div id="input-container">
+        <input type="text" id="message-input" placeholder="Escribe un mensaje..." />
+        <button id="send-button">Enviar</button>
+    </div>
+
+    <script>
+        const ws = new WebSocket('ws://localhost:8765');
+        const messages = document.getElementById('messages');
+        const messageInput = document.getElementById('message-input');
+        const sendButton = document.getElementById('send-button');
+        const status = document.getElementById('status');
+
+        ws.onopen = function(event) {
+            status.textContent = 'Conectado';
+            status.style.backgroundColor = '#d4edda';
+            status.style.color = '#155724';
+        };
+
+        ws.onmessage = function(event) {
+            const li = document.createElement('li');
+            li.textContent = event.data;
+            messages.appendChild(li);
+            messages.scrollTop = messages.scrollHeight;
+        };
+
+        ws.onclose = function(event) {
+            status.textContent = 'Desconectado';
+            status.style.backgroundColor = '#f8d7da';
+            status.style.color = '#721c24';
+        };
+
+        ws.onerror = function(error) {
+            console.error('Error en WebSocket:', error);
+            status.textContent = 'Error de conexión';
+            status.style.backgroundColor = '#f8d7da';
+            status.style.color = '#721c24';
+        };
+
+        sendButton.addEventListener('click', function() {
+            const message = messageInput.value.trim();
+            if (message && ws.readyState === WebSocket.OPEN) {
+                ws.send(message);
+                messageInput.value = '';
+            }
+        });
+
+        messageInput.addEventListener('keypress', function(event) {
+            if (event.key === 'Enter') {
+                sendButton.click();
+            }
+        });
+    </script>
+</body>
+</html>
