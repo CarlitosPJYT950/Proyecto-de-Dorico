@@ -1,0 +1,11 @@
+# Ignore source files (because we publish the 'dist' folder)
+src/
+tsconfig.json
+
+# Ignore tests and coverage
+tests/
+coverage/
+
+# Ignore local dev tools
+.prettierrc
+.eslintrc.js
