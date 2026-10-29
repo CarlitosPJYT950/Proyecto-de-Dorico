@@ -1,0 +1,10 @@
+{
+  "name": "my-cool-package",
+  "version": "1.0.0",
+  "files": [
+    ".VSCode/",
+    "node_modules/",
+    "public/",
+    "src/"
+  ]
+}
