@@ -1,7 +1,7 @@
 import os, zipfile
 
 with open("zeros.bin", "wb") as f:
-    f.write(bytes(100_000_000))  # Create a file with 1024 zero bytes
+    f.write(bytes(100_000))  # Create a file with 1024 zero bytes
 
 with zipfile.ZipFile("zeros.zip", "w", zipfile.ZIP_DEFLATED) as z:
     z.write("zeros.bin")
