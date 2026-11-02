@@ -1,0 +1,23 @@
+{
+  "name": "vscode",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "workspaces": [
+    ".vscode",
+    "node_modules",
+    "public",
+    "src"
+  ],
+  "scripts": {"test": "echo \"Error: no test specified\" && exit 1"},
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "dependencies": {
+    "bootstrap": "^5.3.8",
+    "coreutils": "^0.3.0",
+    "tailwind": "^4.0.0",
+    "tailwinds": "^0.0.0"
+  }
+}
