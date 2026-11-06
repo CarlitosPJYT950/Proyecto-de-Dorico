@@ -17,3 +17,5 @@ var task = allTasks{
 		Content: "This is the first task"
 	}
 }
+
+func main() {fmt.Println(task)}
