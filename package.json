@@ -4,6 +4,8 @@
   "description": "",
   "main": "index.js",
   "workspaces": [
+    ".idea",
+    ".venv",
     ".vscode",
     "node_modules",
     "public",
@@ -17,7 +19,6 @@
   "dependencies": {
     "bootstrap": "^5.3.8",
     "coreutils": "^0.3.0",
-    "tailwind": "^4.0.0",
-    "tailwinds": "^0.0.0"
+    "tailwind": "^4.0.0"
   }
 }
