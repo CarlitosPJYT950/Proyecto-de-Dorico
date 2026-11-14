@@ -2,6 +2,7 @@
   "name": "my-cool-package",
   "version": "1.0.0",
   "files": [
+    ".idea/",
     ".VSCode/",
     "node_modules/",
     "public/",
