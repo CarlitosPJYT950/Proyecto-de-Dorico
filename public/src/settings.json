@@ -34,8 +34,10 @@
         },
         "Sanctus" : {
             "Sanctus" : {
-                "Sanctus" : "Dominus",
-                "Deus" : "Sabaoth"
+                "Dominus" : [
+                    "Deus",
+                    "Sabaoth"
+                ]
             },
             "Benedictus" : "Benedictus"
         },
